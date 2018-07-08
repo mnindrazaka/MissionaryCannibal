@@ -28,10 +28,11 @@ public class Condition : MonoBehaviour
 
   void CheckWin()
   {
+    int total = leftLand.GetComponent<Slots>().slots.Count;
     int missionaryNumber = RightLandClass().GetMissionaryNumber();
     int cannibalNumber = RightLandClass().GetCannibalNumber();
 
-    if (missionaryNumber + cannibalNumber == 4)
+    if (missionaryNumber + cannibalNumber == total)
       Debug.Log("Win");
   }
 
@@ -39,15 +40,37 @@ public class Condition : MonoBehaviour
   {
     int leftMissionaryNumber = LeftLandClass().GetMissionaryNumber();
     int leftCannibalNumber = LeftLandClass().GetCannibalNumber();
+    if (!BoatClass().isOnRight)
+    {
+      leftMissionaryNumber += BoatClass().GetMissionaryNumber();
+      leftCannibalNumber += BoatClass().GetCannibalNumber();
+    }
 
     int rightMissionaryNumber = RightLandClass().GetMissionaryNumber();
     int rightCannibalNumber = RightLandClass().GetCannibalNumber();
+    if (BoatClass().isOnRight)
+    {
+      rightMissionaryNumber += BoatClass().GetMissionaryNumber();
+      rightCannibalNumber += BoatClass().GetCannibalNumber();
+    }
 
-    if (leftMissionaryNumber < leftCannibalNumber && BoatClass().players.Count == 0)
+    if (IsMissionaryLessThanCannibal(leftMissionaryNumber, leftCannibalNumber))
       Debug.Log("Lose");
 
-    if (rightMissionaryNumber < rightCannibalNumber && BoatClass().players.Count == 0)
+    if (IsMissionaryLessThanCannibal(rightMissionaryNumber, rightCannibalNumber))
       Debug.Log("Lose");
+  }
+
+  bool IsMissionaryLessThanCannibal(int missionary, int cannibal)
+  {
+    if (missionary < cannibal && missionary > 0)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 
   Boat BoatClass()

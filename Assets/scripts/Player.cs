@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
   private GameObject leftLand;
   private GameObject rightLand;
 
+  private Light playerLight;
+
   private bool isOnBoat = false;
   public bool isOnRight = false;
+
 
   void Start()
   {
@@ -21,6 +24,18 @@ public class Player : MonoBehaviour
     boat = GameObject.Find("Boat");
     leftLand = GameObject.Find("LeftLand");
     rightLand = GameObject.Find("RightLand");
+    playerLight = GetComponentInChildren<Light>();
+    playerLight.enabled = false;
+  }
+
+  void OnMouseOver()
+  {
+    playerLight.enabled = true;
+  }
+
+  void OnMouseExit()
+  {
+    playerLight.enabled = false;
   }
 
   void OnMouseDown()

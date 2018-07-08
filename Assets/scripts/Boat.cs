@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boat : MonoBehaviour
 {
   public bool isOnRight = false;
+  public bool isMoving = false;
   public List<GameObject> players;
 
   private Animator animator;
@@ -33,7 +34,7 @@ public class Boat : MonoBehaviour
 
   public void HandleMovement()
   {
-    if (players.Count > 0)
+    if (players.Count > 0 && !isMoving)
     {
       if (isOnRight)
         MoveLeft();
@@ -61,5 +62,37 @@ public class Boat : MonoBehaviour
     {
       player.GetComponent<Player>().isOnRight = isOnRight;
     }
+  }
+
+  public int GetMissionaryNumber()
+  {
+    int num = 0;
+    foreach (GameObject player in players)
+    {
+      if (player.CompareTag("Missionary"))
+        num++;
+    }
+    return num;
+  }
+
+  public int GetCannibalNumber()
+  {
+    int num = 0;
+    foreach (GameObject player in players)
+    {
+      if (player.CompareTag("Cannibal"))
+        num++;
+    }
+    return num;
+  }
+
+  public void StartMoving()
+  {
+    isMoving = true;
+  }
+
+  public void StopMoving()
+  {
+    isMoving = false;
   }
 }
