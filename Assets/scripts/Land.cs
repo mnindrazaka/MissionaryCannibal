@@ -37,4 +37,24 @@ public class Land : MonoBehaviour
     }
     return num;
   }
+
+  public Player GetMissionary()
+  {
+    foreach (GameObject player in players)
+    {
+      if (player.CompareTag("Missionary"))
+        return player.GetComponent<Player>();
+    }
+    return null;
+  }
+
+  public Player GetCannibal()
+  {
+    foreach (GameObject player in players)
+    {
+      if (player.CompareTag("Cannibal"))
+        return player.GetComponent<Player>();
+    }
+    return null;
+  }
 }

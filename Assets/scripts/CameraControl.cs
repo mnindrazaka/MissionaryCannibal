@@ -8,7 +8,7 @@ public class CameraControl : MonoBehaviour
   private Camera leftCamera;
   private Camera rightCamera;
   private Camera boatCamera;
-  private bool isUsingMainCamera;
+  private bool isUsingMainCamera = false;
 
   private Boat boat;
 

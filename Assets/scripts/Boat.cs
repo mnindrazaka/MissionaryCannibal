@@ -46,17 +46,17 @@ public class Boat : MonoBehaviour
     }
   }
 
-  void MoveLeft()
+  public void MoveLeft()
   {
     animator.SetTrigger("moveLeft");
   }
 
-  void MoveRight()
+  public void MoveRight()
   {
     animator.SetTrigger("moveRight");
   }
 
-  void ChangePlayerPosition(bool isOnRight)
+  public void ChangePlayerPosition(bool isOnRight)
   {
     foreach (GameObject player in players)
     {
