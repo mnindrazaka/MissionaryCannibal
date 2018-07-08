@@ -151,17 +151,17 @@ public class Ai : MonoBehaviour
         {
           case "MM":
             GetLand(move.isOnRight).GetMissionary().GetOnBoat();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             GetLand(move.isOnRight).GetMissionary().GetOnBoat();
             break;
           case "CC":
             GetLand(move.isOnRight).GetCannibal().GetOnBoat();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             GetLand(move.isOnRight).GetCannibal().GetOnBoat();
             break;
           case "MC":
             GetLand(move.isOnRight).GetMissionary().GetOnBoat();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             GetLand(move.isOnRight).GetCannibal().GetOnBoat();
             break;
           case "M":
@@ -172,7 +172,7 @@ public class Ai : MonoBehaviour
             break;
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         if (move.isOnRight)
           boat.MoveRight();
         else
@@ -181,13 +181,13 @@ public class Ai : MonoBehaviour
         boat.isOnRight = move.isOnRight;
         boat.ChangePlayerPosition(move.isOnRight);
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2.5f);
         // turunkan semua pemain
         if (boat.players.Count == 2)
         {
           Player playerClass = boat.players[0].GetComponent<Player>();
           playerClass.GetOffBoat();
-          yield return new WaitForSeconds(1);
+          yield return new WaitForSeconds(0.5f);
           playerClass = boat.players[0].GetComponent<Player>();
           playerClass.GetOffBoat();
         }
@@ -196,7 +196,7 @@ public class Ai : MonoBehaviour
           Player playerClass = boat.players[0].GetComponent<Player>();
           playerClass.GetOffBoat();
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
       }
     }
   }
