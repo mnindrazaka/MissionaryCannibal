@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.04411763, g: 0.04411763, b: 0.04411763, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -1073,7 +1073,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 146030570}
-  m_Enabled: 1
+  m_Enabled: 0
   m_ExtensionPropertyValues: []
 --- !u!124 &146030573
 Behaviour:
@@ -1878,7 +1878,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 279599821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_ExtensionPropertyValues: []
 --- !u!124 &279599824
 Behaviour:
@@ -4865,6 +4865,8 @@ GameObject:
   - component: {fileID: 737906454}
   - component: {fileID: 737906458}
   - component: {fileID: 737906459}
+  - component: {fileID: 737906460}
+  - component: {fileID: 737906461}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -4955,6 +4957,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14d8edd1fee2d4549973e9b5ef0346e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &737906460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737906453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcc4b45aab9e4e9d8e231802dcf7cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &737906461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737906453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d924ba82c69734692b3585db0999bc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &779322819
@@ -8919,7 +8943,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1379026489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -322, y: 222.5, z: 0}
+  m_LocalPosition: {x: -321.5, y: 222.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 732297822}
@@ -9201,7 +9225,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467290034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_ExtensionPropertyValues: []
 --- !u!124 &1467290037
 Behaviour:
@@ -13557,7 +13581,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2141344128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 372, y: 272.5, z: 0}
+  m_LocalPosition: {x: 371.5, y: 272.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1379026490}
