@@ -10,6 +10,12 @@ public class Ai : MonoBehaviour
 
   private bool isOnRight = false;
 
+  // Temporary Variable 
+  int originMissionary = 0;
+  int originCannibal = 0;
+  int targetMissionary = 0;
+  int targetCannibal = 0;
+
   private Boat boat;
   private Land leftLand;
   private Land rightLand;
@@ -18,8 +24,6 @@ public class Ai : MonoBehaviour
   {
     Initialize();
     FindingMoves();
-    // foreach (State move in moves)
-    //   Debug.Log(move.op);
   }
 
   void Initialize()
@@ -63,11 +67,6 @@ public class Ai : MonoBehaviour
 
   State MakeMove(string op)
   {
-    int originMissionary = 0;
-    int originCannibal = 0;
-    int targetMissionary = 0;
-    int targetCannibal = 0;
-
     if (isOnRight)
     {
       originMissionary = GetLastMove().missionaryLeft;
@@ -122,18 +121,12 @@ public class Ai : MonoBehaviour
 
   bool IsMoveUnique(State move)
   {
-    bool isUnique = true;
-
     foreach (State item in moves)
     {
       if (item.cannibalLeft == move.cannibalLeft && item.cannibalRight == move.cannibalRight && item.missionaryLeft == move.missionaryLeft && item.missionaryRight == move.missionaryRight && item.isOnRight == move.isOnRight)
-      {
-        isUnique = false;
-        break;
-      }
+        return false;
     }
-
-    return isUnique;
+    return true;
   }
 
   public void HandleMoves()
@@ -182,7 +175,7 @@ public class Ai : MonoBehaviour
         boat.ChangePlayerPosition(move.isOnRight);
 
         yield return new WaitForSeconds(2.5f);
-        // turunkan semua pemain
+
         if (boat.players.Count == 2)
         {
           Player playerClass = boat.players[0].GetComponent<Player>();

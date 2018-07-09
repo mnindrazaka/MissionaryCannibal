@@ -8,6 +8,8 @@ public class Condition : MonoBehaviour
   private GameObject leftLand;
   private GameObject rightLand;
 
+  private Modal modal;
+
   void Start()
   {
     Initialize();
@@ -18,12 +20,13 @@ public class Condition : MonoBehaviour
     boat = GameObject.Find("Boat");
     leftLand = GameObject.Find("LeftLand");
     rightLand = GameObject.Find("RightLand");
+    modal = GameObject.Find("Modal").GetComponent<Modal>();
   }
 
   void Update()
   {
     CheckWin();
-    CheckLose();
+    StartCoroutine(CheckLose());
   }
 
   void CheckWin()
@@ -33,10 +36,10 @@ public class Condition : MonoBehaviour
     int cannibalNumber = RightLandClass().GetCannibalNumber();
 
     if (missionaryNumber + cannibalNumber == total)
-      Debug.Log("Win");
+      modal.Win();
   }
 
-  void CheckLose()
+  IEnumerator CheckLose()
   {
     int leftMissionaryNumber = LeftLandClass().GetMissionaryNumber();
     int leftCannibalNumber = LeftLandClass().GetCannibalNumber();
@@ -55,10 +58,16 @@ public class Condition : MonoBehaviour
     }
 
     if (IsMissionaryLessThanCannibal(leftMissionaryNumber, leftCannibalNumber))
-      Debug.Log("Lose");
+    {
+      yield return new WaitForSeconds(2.5f);
+      modal.Gameover();
+    }
 
     if (IsMissionaryLessThanCannibal(rightMissionaryNumber, rightCannibalNumber))
-      Debug.Log("Lose");
+    {
+      yield return new WaitForSeconds(2.5f);
+      modal.Gameover();
+    }
   }
 
   bool IsMissionaryLessThanCannibal(int missionary, int cannibal)
