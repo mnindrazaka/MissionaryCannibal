@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
   public void GetOffBoat()
   {
     isOnBoat = false;
+    Flip();
     GetBoatClass().RemovePlayer(gameObject);
     transform.parent = GetLand().transform;
 
@@ -88,10 +89,11 @@ public class Player : MonoBehaviour
 
   public void GetOnBoat()
   {
-    if (IsBoatSameSide())
+    if (IsBoatSameSide() && GetBoatClass().players.Count < 2)
     {
       isOnBoat = true;
       transform.parent = boat.transform;
+      Flip();
 
       SetPosition(boat);
       GetBoatClass().AddPlayer(gameObject);
@@ -117,5 +119,12 @@ public class Player : MonoBehaviour
   Boat GetBoatClass()
   {
     return boat.GetComponent<Boat>();
+  }
+
+  void Flip()
+  {
+    Vector3 scale = transform.localScale;
+    scale.x *= -1;
+    transform.localScale = scale;
   }
 }

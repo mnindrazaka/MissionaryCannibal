@@ -8,7 +8,7 @@ public class Ai : MonoBehaviour
 
   private List<State> moves;
 
-  private bool isOnRight = false;
+  private bool isOnRight;
 
   // Temporary Variable 
   int originMissionary = 0;
@@ -20,10 +20,11 @@ public class Ai : MonoBehaviour
   private Land leftLand;
   private Land rightLand;
 
-  void Start()
+  public void Autoplay()
   {
     Initialize();
     FindingMoves();
+    HandleMoves();
   }
 
   void Initialize()
@@ -32,9 +33,14 @@ public class Ai : MonoBehaviour
     leftLand = GameObject.Find("LeftLand").GetComponent<Land>();
     rightLand = GameObject.Find("RightLand").GetComponent<Land>();
 
-    moves = new List<State>();
-    moves.Add(new State(3, 3, 0, 0, false));
+    int missionaryLeft = leftLand.GetMissionaryNumber();
+    int cannibalLeft = leftLand.GetCannibalNumber();
+    int missionaryRight = rightLand.GetMissionaryNumber();
+    int cannibalRight = rightLand.GetCannibalNumber();
+    isOnRight = boat.isOnRight;
 
+    moves = new List<State>();
+    moves.Add(new State(missionaryLeft, cannibalLeft, missionaryRight, cannibalRight, isOnRight));
     operators = new List<string>();
     operators.Add("MM");
     operators.Add("CC");

@@ -9,6 +9,7 @@ public class Boat : MonoBehaviour
   public List<GameObject> players;
 
   private Animator animator;
+  private AudioSource audioSource;
 
   void Start()
   {
@@ -19,12 +20,15 @@ public class Boat : MonoBehaviour
   {
     players = new List<GameObject>();
     animator = GetComponent<Animator>();
+    audioSource = GetComponent<AudioSource>();
   }
 
   public void AddPlayer(GameObject player)
   {
     if (players.Count < 2)
+    {
       players.Add(player);
+    }
   }
 
   public void RemovePlayer(GameObject player)
@@ -88,11 +92,20 @@ public class Boat : MonoBehaviour
 
   public void StartMoving()
   {
+    Flip();
     isMoving = true;
+    audioSource.Play();
   }
 
   public void StopMoving()
   {
     isMoving = false;
+  }
+
+  void Flip()
+  {
+    Vector3 scale = transform.localScale;
+    scale.x *= -1;
+    transform.localScale = scale;
   }
 }

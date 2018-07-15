@@ -6,6 +6,20 @@ public class Land : MonoBehaviour
 {
   public List<GameObject> players;
 
+  public LandStatus missionaryStatus;
+  public LandStatus cannibalStatus;
+
+  void Update()
+  {
+    UpdateStatus();
+  }
+
+  void UpdateStatus()
+  {
+    missionaryStatus.RenderIcon(GetMissionaryNumber());
+    cannibalStatus.RenderIcon(GetCannibalNumber());
+  }
+
   public void AddPlayer(GameObject player)
   {
     players.Add(player);
