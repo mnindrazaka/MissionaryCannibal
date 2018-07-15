@@ -305,6 +305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad311e2d9a5b447a58d8aaf5e1b2e6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boat: {fileID: 1201411537420632, guid: 648b39f5c4b624f72abfe69346a45a6f, type: 2}
+  leftLand: {fileID: 1738769972216036, guid: 4b947406139ee4866bc2eb1ed8e770c6, type: 2}
+  rightLand: {fileID: 1031010027629784, guid: 1cd2fa00cd6054612b52f698bee6ca37, type: 2}
   isOnRight: 0
 --- !u!212 &212286110061237722
 SpriteRenderer:

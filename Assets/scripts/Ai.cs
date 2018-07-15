@@ -10,15 +10,9 @@ public class Ai : MonoBehaviour
 
   private bool isOnRight;
 
-  // Temporary Variable 
-  int originMissionary = 0;
-  int originCannibal = 0;
-  int targetMissionary = 0;
-  int targetCannibal = 0;
-
-  private Boat boat;
-  private Land leftLand;
-  private Land rightLand;
+  public Boat boat;
+  public Land leftLand;
+  public Land rightLand;
 
   public void Autoplay()
   {
@@ -29,10 +23,6 @@ public class Ai : MonoBehaviour
 
   void Initialize()
   {
-    boat = GameObject.Find("Boat").GetComponent<Boat>();
-    leftLand = GameObject.Find("LeftLand").GetComponent<Land>();
-    rightLand = GameObject.Find("RightLand").GetComponent<Land>();
-
     int missionaryLeft = leftLand.GetMissionaryNumber();
     int cannibalLeft = leftLand.GetCannibalNumber();
     int missionaryRight = rightLand.GetMissionaryNumber();
@@ -73,6 +63,12 @@ public class Ai : MonoBehaviour
 
   State MakeMove(string op)
   {
+    // Temporary Variable 
+    int originMissionary = 0;
+    int originCannibal = 0;
+    int targetMissionary = 0;
+    int targetCannibal = 0;
+
     if (isOnRight)
     {
       originMissionary = GetLastMove().missionaryLeft;
@@ -135,7 +131,7 @@ public class Ai : MonoBehaviour
     return true;
   }
 
-  public void HandleMoves()
+  void HandleMoves()
   {
     StartCoroutine(DoingMoves());
   }

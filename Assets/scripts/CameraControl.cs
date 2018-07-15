@@ -4,27 +4,13 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-  private Camera mainCamera;
-  private Camera leftCamera;
-  private Camera rightCamera;
-  private Camera boatCamera;
+  public Camera mainCamera;
+  public Camera leftCamera;
+  public Camera rightCamera;
+  public Camera boatCamera;
   private bool isUsingMainCamera = false;
 
-  private Boat boat;
-
-  void Start()
-  {
-    Initialize();
-  }
-
-  void Initialize()
-  {
-    mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-    leftCamera = GameObject.Find("LeftCamera").GetComponent<Camera>();
-    rightCamera = GameObject.Find("RightCamera").GetComponent<Camera>();
-    boatCamera = GameObject.Find("BoatCamera").GetComponent<Camera>();
-    boat = GameObject.Find("Boat").GetComponent<Boat>();
-  }
+  public Boat boat;
 
   void Update()
   {

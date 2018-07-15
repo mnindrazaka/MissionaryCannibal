@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Modal : MonoBehaviour
 {
-  GameObject modal;
-  GameObject instruction;
-  GameObject gameover;
-  GameObject win;
+  public GameObject modal;
+  public GameObject instruction;
+  public GameObject gameover;
+  public GameObject win;
 
   void Start()
   {
@@ -17,11 +17,6 @@ public class Modal : MonoBehaviour
 
   void Initialize()
   {
-    modal = GameObject.Find("Modal");
-    instruction = GameObject.Find("Instruction");
-    gameover = GameObject.Find("Gameover");
-    win = GameObject.Find("Win");
-
     modal.SetActive(true);
     instruction.SetActive(true);
     gameover.SetActive(false);

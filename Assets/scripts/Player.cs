@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  private GameObject boat;
-  private GameObject leftLand;
-  private GameObject rightLand;
+  public GameObject boat;
+  public GameObject leftLand;
+  public GameObject rightLand;
 
   private Light playerLight;
 
@@ -21,9 +21,6 @@ public class Player : MonoBehaviour
 
   void Initialize()
   {
-    boat = GameObject.Find("Boat");
-    leftLand = GameObject.Find("LeftLand");
-    rightLand = GameObject.Find("RightLand");
     playerLight = GetComponentInChildren<Light>();
     playerLight.enabled = false;
   }

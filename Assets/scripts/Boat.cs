@@ -18,7 +18,6 @@ public class Boat : MonoBehaviour
 
   void Initialize()
   {
-    players = new List<GameObject>();
     animator = GetComponent<Animator>();
     audioSource = GetComponent<AudioSource>();
   }

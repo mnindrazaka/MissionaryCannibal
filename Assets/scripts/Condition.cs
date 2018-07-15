@@ -4,24 +4,10 @@ using UnityEngine;
 
 public class Condition : MonoBehaviour
 {
-  private GameObject boat;
-  private GameObject leftLand;
-  private GameObject rightLand;
-
-  private Modal modal;
-
-  void Start()
-  {
-    Initialize();
-  }
-
-  void Initialize()
-  {
-    boat = GameObject.Find("Boat");
-    leftLand = GameObject.Find("LeftLand");
-    rightLand = GameObject.Find("RightLand");
-    modal = GameObject.Find("Modal").GetComponent<Modal>();
-  }
+  public GameObject boat;
+  public GameObject leftLand;
+  public GameObject rightLand;
+  public Modal modal;
 
   void Update()
   {
