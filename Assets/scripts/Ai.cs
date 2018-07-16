@@ -16,9 +16,12 @@ public class Ai : MonoBehaviour
 
   public void Autoplay()
   {
-    Initialize();
-    FindingMoves();
-    HandleMoves();
+    if (boat.players.Count == 0)
+    {
+      Initialize();
+      FindingMoves();
+      HandleMoves();
+    }
   }
 
   void Initialize()

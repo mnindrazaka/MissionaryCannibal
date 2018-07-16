@@ -7,63 +7,70 @@ using UnityEngine.UI;
 public class Modal : MonoBehaviour
 {
   public GameObject modal;
-  public GameObject instruction;
-  public GameObject gameover;
-  public GameObject win;
+  public GameObject instructionPanel;
+  public GameObject highScorePanel;
+  public GameObject gameoverPanel;
+  public GameObject winPanel;
 
-  public Text winTime;
+  public Text winText;
+
+  public Text highScoreText;
 
   public Timer timer;
 
   void Start()
   {
-    Initialize();
+    ShowInstruction();
   }
-
-  void Initialize()
+  public void ShowInstruction()
   {
     modal.SetActive(true);
-    instruction.SetActive(true);
-    gameover.SetActive(false);
-    win.SetActive(false);
+    instructionPanel.SetActive(true);
+    highScorePanel.SetActive(false);
+    gameoverPanel.SetActive(false);
+    winPanel.SetActive(false);
     timer.isPaused = true;
+  }
+
+  public void ShowHighScore()
+  {
+    modal.SetActive(true);
+    instructionPanel.SetActive(false);
+    highScorePanel.SetActive(true);
+    gameoverPanel.SetActive(false);
+    winPanel.SetActive(false);
+    timer.isPaused = true;
+  }
+
+  public void ShowGameover()
+  {
+    modal.SetActive(true);
+    instructionPanel.SetActive(false);
+    highScorePanel.SetActive(false);
+    gameoverPanel.SetActive(true);
+    winPanel.SetActive(false);
+    timer.isPaused = true;
+  }
+
+  public void ShowWin()
+  {
+    modal.SetActive(true);
+    instructionPanel.SetActive(false);
+    highScorePanel.SetActive(false);
+    gameoverPanel.SetActive(false);
+    winPanel.SetActive(true);
+    timer.isPaused = true;
+    winText.text = timer.GetTime();
   }
 
   public void Play()
   {
     modal.SetActive(false);
-    instruction.SetActive(false);
-    gameover.SetActive(false);
-    win.SetActive(false);
+    instructionPanel.SetActive(false);
+    highScorePanel.SetActive(false);
+    gameoverPanel.SetActive(false);
+    winPanel.SetActive(false);
     timer.isPaused = false;
-  }
-
-  public void Instruction()
-  {
-    modal.SetActive(true);
-    instruction.SetActive(true);
-    gameover.SetActive(false);
-    win.SetActive(false);
-    timer.isPaused = true;
-  }
-
-  public void Gameover()
-  {
-    modal.SetActive(true);
-    instruction.SetActive(false);
-    gameover.SetActive(true);
-    win.SetActive(false);
-    timer.isPaused = true;
-  }
-
-  public void Win()
-  {
-    modal.SetActive(true);
-    instruction.SetActive(false);
-    gameover.SetActive(false);
-    win.SetActive(true);
-    timer.isPaused = true;
-    winTime.text = timer.GetTime();
   }
 
   public void Retry()

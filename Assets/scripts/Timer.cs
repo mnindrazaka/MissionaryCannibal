@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
 {
   public Text stopwatchText;
   public bool isPaused = false;
-  Stopwatch stopwatch;
+  public Stopwatch stopwatch;
 
   void Start()
   {

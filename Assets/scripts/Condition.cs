@@ -9,23 +9,45 @@ public class Condition : MonoBehaviour
   public GameObject rightLand;
   public Modal modal;
 
+  public Store store;
+
   void Update()
   {
-    CheckWin();
-    StartCoroutine(CheckLose());
+    Win();
+    StartCoroutine(Lose());
   }
 
-  void CheckWin()
+  void Win()
+  {
+    if (IsWin())
+    {
+      modal.ShowWin();
+      store.Save();
+    }
+  }
+
+  bool IsWin()
   {
     int total = leftLand.GetComponent<Slots>().slots.Count;
     int missionaryNumber = RightLandClass().GetMissionaryNumber();
     int cannibalNumber = RightLandClass().GetCannibalNumber();
 
     if (missionaryNumber + cannibalNumber == total)
-      modal.Win();
+      return true;
+    else
+      return false;
   }
 
-  IEnumerator CheckLose()
+  IEnumerator Lose()
+  {
+    if (IsLose())
+    {
+      yield return new WaitForSeconds(2.5f);
+      modal.ShowGameover();
+    }
+  }
+
+  bool IsLose()
   {
     int leftMissionaryNumber = LeftLandClass().GetMissionaryNumber();
     int leftCannibalNumber = LeftLandClass().GetCannibalNumber();
@@ -45,15 +67,15 @@ public class Condition : MonoBehaviour
 
     if (IsMissionaryLessThanCannibal(leftMissionaryNumber, leftCannibalNumber))
     {
-      yield return new WaitForSeconds(2.5f);
-      modal.Gameover();
+      return true;
     }
 
     if (IsMissionaryLessThanCannibal(rightMissionaryNumber, rightCannibalNumber))
     {
-      yield return new WaitForSeconds(2.5f);
-      modal.Gameover();
+      return true;
     }
+
+    return false;
   }
 
   bool IsMissionaryLessThanCannibal(int missionary, int cannibal)
