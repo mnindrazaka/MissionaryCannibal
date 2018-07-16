@@ -10,43 +10,56 @@ public class Store : MonoBehaviour
 {
   public Timer timer;
   public HighScore highscore;
+  string destination;
+  FileStream file;
+  BinaryFormatter bf;
 
   void Start()
   {
+    Initialize();
     Load();
+  }
+
+  void Initialize()
+  {
+    destination = Application.persistentDataPath + "/save.dat";
+    bf = new BinaryFormatter();
   }
 
   public void Save()
   {
-    string destination = Application.persistentDataPath + "/save.dat";
-    FileStream file;
-
     if (File.Exists(destination))
       file = File.OpenWrite(destination);
     else
       file = File.Create(destination);
 
-    TimeSpan highScoreTimeSpan = highscore.highScore;
-    TimeSpan currentTimeSpan = timer.stopwatch.Elapsed;
-
     GameData gameData = new GameData();
-    gameData.highScore = highScoreTimeSpan;
+    gameData.highScore = GetUpdatedHighScore();
 
-    if (TimeSpan.Compare(highScoreTimeSpan, currentTimeSpan) == 1)
-    {
-      gameData.highScore = currentTimeSpan;
-    }
-
-    BinaryFormatter bf = new BinaryFormatter();
     bf.Serialize(file, gameData);
     file.Close();
   }
 
+  TimeSpan GetUpdatedHighScore()
+  {
+    TimeSpan highScoreTimeSpan = highscore.highScore;
+    TimeSpan currentTimeSpan = timer.stopwatch.Elapsed;
+
+    if (isCurrentTimeSpanFaster())
+      return currentTimeSpan;
+    else
+      return highScoreTimeSpan;
+  }
+
+  bool isCurrentTimeSpanFaster()
+  {
+    TimeSpan highScoreTimeSpan = highscore.highScore;
+    TimeSpan currentTimeSpan = timer.stopwatch.Elapsed;
+    return TimeSpan.Compare(highScoreTimeSpan, currentTimeSpan) == 1;
+  }
+
   public void Load()
   {
-    string destination = Application.persistentDataPath + "/save.dat";
-    FileStream file;
-
     if (File.Exists(destination))
       file = File.OpenRead(destination);
     else
@@ -55,11 +68,8 @@ public class Store : MonoBehaviour
       return;
     }
 
-    BinaryFormatter bf = new BinaryFormatter();
     GameData gameData = (GameData)bf.Deserialize(file);
     highscore.highScore = gameData.highScore;
-
-    Debug.Log(new DateTime(gameData.highScore.Ticks).ToString("mm:ss"));
 
     file.Close();
   }
