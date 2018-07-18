@@ -55,6 +55,8 @@ public class Store : MonoBehaviour
   {
     TimeSpan highScoreTimeSpan = highscore.highScore;
     TimeSpan currentTimeSpan = timer.stopwatch.Elapsed;
+    if (highScoreTimeSpan == new TimeSpan(0, 0, 0))
+      return true;
     return TimeSpan.Compare(highScoreTimeSpan, currentTimeSpan) == 1;
   }
 
@@ -64,7 +66,12 @@ public class Store : MonoBehaviour
       file = File.OpenRead(destination);
     else
     {
-      Debug.LogError("File not found");
+      file = File.Create(destination);
+      GameData gameData2 = new GameData();
+      gameData2.highScore = new TimeSpan(0, 0, 0);
+      bf.Serialize(file, gameData2);
+      highscore.highScore = gameData2.highScore;
+      file.Close();
       return;
     }
 
@@ -72,5 +79,11 @@ public class Store : MonoBehaviour
     highscore.highScore = gameData.highScore;
 
     file.Close();
+  }
+
+  public void Reset()
+  {
+    File.Delete(destination);
+    Load();
   }
 }
