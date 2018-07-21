@@ -26,13 +26,29 @@ public class Store : MonoBehaviour
     bf = new BinaryFormatter();
   }
 
-  public void Save()
+  public void Load()
   {
     if (File.Exists(destination))
-      file = File.OpenWrite(destination);
+    {
+      file = File.OpenRead(destination);
+      GameData gameData = (GameData)bf.Deserialize(file);
+      highscore.highScore = gameData.highScore;
+    }
     else
+    {
       file = File.Create(destination);
+      GameData gameData2 = new GameData();
+      gameData2.highScore = new TimeSpan(0, 0, 0);
+      bf.Serialize(file, gameData2);
+      highscore.highScore = gameData2.highScore;
+    }
 
+    file.Close();
+  }
+
+  public void Save()
+  {
+    file = File.OpenWrite(destination);
     GameData gameData = new GameData();
     gameData.highScore = GetUpdatedHighScore();
 
@@ -58,27 +74,6 @@ public class Store : MonoBehaviour
     if (highScoreTimeSpan == new TimeSpan(0, 0, 0))
       return true;
     return TimeSpan.Compare(highScoreTimeSpan, currentTimeSpan) == 1;
-  }
-
-  public void Load()
-  {
-    if (File.Exists(destination))
-      file = File.OpenRead(destination);
-    else
-    {
-      file = File.Create(destination);
-      GameData gameData2 = new GameData();
-      gameData2.highScore = new TimeSpan(0, 0, 0);
-      bf.Serialize(file, gameData2);
-      highscore.highScore = gameData2.highScore;
-      file.Close();
-      return;
-    }
-
-    GameData gameData = (GameData)bf.Deserialize(file);
-    highscore.highScore = gameData.highScore;
-
-    file.Close();
   }
 
   public void Reset()
