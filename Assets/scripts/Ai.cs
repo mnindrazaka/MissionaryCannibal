@@ -66,7 +66,7 @@ public class Ai : MonoBehaviour
 
   State MakeMove(string op)
   {
-    // Temporary Variable 
+
     int originMissionary = 0;
     int originCannibal = 0;
     int targetMissionary = 0;

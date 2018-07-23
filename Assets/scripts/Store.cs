@@ -14,6 +14,8 @@ public class Store : MonoBehaviour
   FileStream file;
   BinaryFormatter bf;
 
+  public int level;
+
   void Start()
   {
     Initialize();
@@ -22,7 +24,7 @@ public class Store : MonoBehaviour
 
   void Initialize()
   {
-    destination = Application.persistentDataPath + "/save.dat";
+    destination = Application.persistentDataPath + "/save" + level + ".dat";
     bf = new BinaryFormatter();
   }
 

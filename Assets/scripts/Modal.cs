@@ -73,8 +73,8 @@ public class Modal : MonoBehaviour
     timer.isPaused = false;
   }
 
-  public void Retry()
+  public void Retry(string scene)
   {
-    SceneManager.LoadScene("level1");
+    SceneManager.LoadScene(scene);
   }
 }

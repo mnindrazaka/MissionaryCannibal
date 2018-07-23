@@ -10,7 +10,6 @@ public class AudioTrigger : MonoBehaviour
 
   void OnTriggerEnter2D(Collider2D other)
   {
-    Debug.Log("trigger detected");
     snapshot.TransitionTo(crossFade);
   }
 }
