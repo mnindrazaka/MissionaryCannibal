@@ -1,3 +1,3 @@
 # Missionary VS Cannibal
 
-Built with unity
+Simple logic game created using unity and use dept first search for finding path automatically
